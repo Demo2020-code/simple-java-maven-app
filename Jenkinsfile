@@ -35,7 +35,6 @@ pipeline {
             }
             steps {
                 sh 'mvn test'
-                stash includes: 'target/', name: 'stash2'
             }
             post {
                 always {
@@ -45,6 +44,7 @@ pipeline {
         }
         stage('Docker_Build') {
             steps {
+                unstash 'stash1'
                 sh 'ls -l target/'
                 sh 'docker login -u ${HUB_CREDS_DEMO_USR} -p ${HUB_CREDS_DEMO_PSW}'
                 sh 'docker build -t ${REPOSITORY}:${IMAGE_TAG} -t ${REPOSITORY}:latest .'
