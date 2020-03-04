@@ -23,6 +23,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                stash includes: 'target', name: 'saveBuild'
             }
         }
         stage('Test') {
