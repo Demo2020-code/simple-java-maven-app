@@ -45,8 +45,8 @@ pipeline {
             steps {
                 sh 'ls -l target/'
                 sh 'docker login -u ${HUB_CREDS_DEMO_USR} -p ${HUB_CREDS_DEMO_PSW}'
-                sh 'docker build -t ${REPOSITORY}:${IMAGE_TAG} .'
-                sh 'docker push ${REPOSITORY}'
+                sh 'docker build -t ${REPOSITORY}:${IMAGE_TAG} -t ${REPOSITORY}:latest .'
+                sh 'docker push ${REPOSITORY}:latest ${REPOSITORY}:${IMAGE_TAG}'
             }
         }
     }
