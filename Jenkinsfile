@@ -44,7 +44,7 @@ pipeline {
         stage('Docker_Build') {
             steps {
                 sh 'docker login -u ${HUB_CREDS_DEMO_USR} -p ${HUB_CREDS_DEMO_PSW}'
-                sh 'docker build -t ${REPOSITORY}:${IMAGE_TAG}'
+                sh 'docker build -t ${REPOSITORY}:${IMAGE_TAG} .'
                 sh 'docker push ${REPOSITORY}'
             }
         }
