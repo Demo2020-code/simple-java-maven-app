@@ -8,7 +8,7 @@ pipeline {
     
     environment {
        REPOSITORY = 'demo2020/simple-java-maven-app'
-       HUB_CREDS_DEMO = credentials('HUB_CREDS')
+       HUB_CREDS_DEMO = credentials('HUB_CREDS_DEMO')
        DATE = sh (returnStdout: true, script: 'date +%y%m%d%H%M%S').trim()
        GITCOMMIT = sh (returnStdout: true, script: "echo ${GIT_COMMIT}|cut -c 1-8").trim()
        IMAGE_TAG = "${GIT_BRANCH}_${DATE}_${GITCOMMIT}"
