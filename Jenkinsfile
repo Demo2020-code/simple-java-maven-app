@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                stash includes: 'target/', name: 'saveBuild'
+                stash includes: 'target/'
             }
         }
         stage('Test') {
@@ -35,6 +35,7 @@ pipeline {
             }
             steps {
                 sh 'mvn test'
+                stash includes: 'target/'
             }
             post {
                 always {
